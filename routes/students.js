@@ -36,6 +36,26 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.patch("/:id", async (req, res) => {
+  try {
+    const { _id, ...attributes } = req.body.data.attributes;
+    const student = await Student.findByIdAndUpdate(
+      req.params.id,
+      { id: req.params.id, ...attributes },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+    if (!student) {
+      throw new Error("Resource not found!");
+    }
+    res.json({ data: formatResponseData("students", student.toObject()) });
+  } catch (error) {
+    sendResourceNotFound(req, res);
+  }
+});
+
 function formatResponseData(type, resource) {
   const { _id, ...attributes } = resource;
   return { type, id: _id, attributes };
