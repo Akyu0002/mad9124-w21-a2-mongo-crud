@@ -1,7 +1,7 @@
 {
   "name": "mad9124-w21-a2-mongo-crud",
   "version": "0.1.0",
-  "description": "",
+  "description": "Mongo Crud Assignment 2 for 9124",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
     "MAD9124",
     "W21"
   ],
-  "author": "",
+  "author": "Tibet Akyurekli",
   "contributors": [
     "Robert McKenney <mckennr@algonquincollege.com>"
   ],
