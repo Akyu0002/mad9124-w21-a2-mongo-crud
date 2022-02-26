@@ -8,7 +8,25 @@ router.get("/", async (req, res) => {
 
   res.json({
     data: courses.map((course) =>
-      formatResponseData("cars", course.toObject())
+      formatResponseData("courses", course.toObject())
     ),
   });
 });
+
+router.post("/", async (req, res) => {
+  let attributes = req.body.data.attributes;
+  delete attributes._id;
+  let newCourse = new Course(attributes);
+  await newCourse.save();
+
+  res
+    .status(201)
+    .json({ data: formatResponseData("courses", newCourse.toObject()) });
+});
+
+function formatResponseData(type, resource) {
+  const { _id, ...attributes } = resource;
+  return { type, id: _id, attributes };
+}
+
+module.exports = router;

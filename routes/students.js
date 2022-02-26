@@ -12,3 +12,21 @@ router.get("/", async (req, res) => {
     ),
   });
 });
+
+router.post("/", async (req, res) => {
+  let attributes = req.body.data.attributes;
+  delete attributes._id;
+  let newStudent = new Student(attributes);
+  await newStudent.save();
+
+  res
+    .status(201)
+    .json({ data: formatResponseData("students", newStudent.toObject()) });
+});
+
+function formatResponseData(type, resource) {
+  const { _id, ...attributes } = resource;
+  return { type, id: _id, attributes };
+}
+
+module.exports = router;

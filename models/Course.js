@@ -1,4 +1,4 @@
-const Student = require("./Student");
+const Course = require("./Student");
 const mongoose = require("mongoose");
 
 const schema = new mongoose.Schema({
@@ -10,6 +10,6 @@ const schema = new mongoose.Schema({
     { type: mongoose.Schema.Types.ObjectId, require: false, ref: "Student" },
   ],
 });
-const Model = mongoose.model("Student", schema);
+const Model = mongoose.model("Course", schema);
 
 module.exports = Model;
