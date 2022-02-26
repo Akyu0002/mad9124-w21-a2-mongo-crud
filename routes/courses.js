@@ -61,4 +61,15 @@ function formatResponseData(type, resource) {
   return { type, id: _id, attributes };
 }
 
+function sendResourceNotFound(req, res) {
+  res.status(404).send({
+    errors: [
+      {
+        status: "404",
+        title: "Resource does not exist",
+        description: `We could not find a course with id: ${req.params.id}`,
+      },
+    ],
+  });
+}
 module.exports = router;
