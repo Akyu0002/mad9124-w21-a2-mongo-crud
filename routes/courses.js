@@ -1,4 +1,3 @@
-const { response } = require("express");
 const express = require("express");
 const Course = require("../models/Course");
 const router = express.Router();
@@ -15,7 +14,7 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", sanitizeBody, async (req, res) => {
-  let attributes = sanitizeBody(req.body.data.attributes);
+  let attributes = req.body.data.attributes;
   delete attributes._id;
   let newCourse = new Course(attributes);
   await newCourse.save();
@@ -37,7 +36,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.patch("/:id", async (req, res) => {
+router.patch("/:id", sanitizeBody, async (req, res) => {
   try {
     const { _id, ...attributes } = req.body.data.attributes;
     const course = await Course.findByIdAndUpdate(
@@ -57,7 +56,7 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", sanitizeBody, async (req, res) => {
   try {
     const { _id, ...attributes } = req.body.data.attributes;
     const course = await Course.findByIdAndUpdate(

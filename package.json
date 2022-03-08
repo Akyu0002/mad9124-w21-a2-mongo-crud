@@ -4,6 +4,7 @@
   "description": "Mongo Crud Assignment 2 for 9124",
   "main": "app.js",
   "scripts": {
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -19,6 +20,7 @@
   "dependencies": {
     "debug": "^4.3.3",
     "express": "^4.17.3",
+    "express-mongo-sanitize": "^2.2.0",
     "mongoose": "^6.2.3",
     "morgan": "^1.10.0",
     "xss": "^1.0.10"
