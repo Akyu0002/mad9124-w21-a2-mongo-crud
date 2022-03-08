@@ -12,9 +12,11 @@ mongoose
     process.exit(1);
   });
 
+const sanitizeMongo = require("express-mongo-sanitize");
 const morgan = require("morgan");
 const express = require("express");
 const app = express();
+app.use(sanitizeMongo());
 
 app.use(morgan("tiny"));
 app.use(express.json());
