@@ -1,5 +1,4 @@
 // Don't forget to use NPM to install Express and Mongoose.
-"use strict";
 
 const mongoose = require("mongoose");
 mongoose
@@ -16,10 +15,10 @@ const sanitizeMongo = require("express-mongo-sanitize");
 const morgan = require("morgan");
 const express = require("express");
 const app = express();
-app.use(sanitizeMongo());
 
 app.use(morgan("tiny"));
 app.use(express.json());
+app.use(sanitizeMongo());
 
 app.use("/api/courses", require("./routes/courses"));
 app.use("/api/students", require("./routes/students"));
